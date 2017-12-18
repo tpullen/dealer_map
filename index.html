@@ -1,0 +1,123 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+		<meta name="viewport" content="width=device-width" />
+		<link rel="stylesheet" type="text/css" href="styles.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	</head>
+	<body>
+
+		<div class="container">			
+
+			<img class="overlay opel" src="opel_overlay.png">
+			<img class="overlay audi" src="audi_overlay.png">
+			<img class="overlay kia" src="kia_overlay.png">
+			<img class="overlay skoda" src="skoda_overlay.png">
+			<img class="overlay vw" src="volkswagen_overlay.png">
+			<img src="Motorgomez_drone_photo.jpg">
+			<div class="peugeot_container">
+				<img src="peugeot.jpg">
+				<img class="peugeot_overlay" src="peugeot_overlay.png">
+			</div>
+			<div class="full_overlay"></div>
+			<div class="loader"></div>
+			<div class="mobile_overlay">
+				<div class="mobile_text">
+					<span>Para una mejor visualización, poner en horizontal</span>
+					<img src="rotate-device.png">
+				</div>
+			</div>
+
+			<div class="pin_container">
+				<div class="pin" id="audi" data-overlay="audi" data-tour="audi">
+					<img src="audi_pin.png">
+				</div>
+				<div class="pin audi_selection" id="audi_selection" data-overlay="audi" data-tour="audiselectionplus">
+					<img src="audi_selection_pin.png">
+				</div>
+				<div class="pin kia" id="kia" data-overlay="kia" data-tour="kia">
+					<img src="kia_pin.png">
+				</div>
+				<div class="pin opel" id="opel" data-overlay="opel" data-tour="opel">
+					<img src="opel_pin.png">
+				</div>
+				<div class="pin peugeot" id="peugeot" data-overlay="peugeot" data-tour="peugeot">
+					<img src="peugeot_pin.png">
+				</div>
+				<div class="pin seat" id="seat" data-overlay="skoda" data-tour="seat">
+					<img src="seat_pin.png">
+				</div>
+				<div class="pin skoda" id="skoda" data-overlay="skoda" data-tour="skoda">
+					<img src="skoda_pin.png">
+				</div>
+				<div class="pin suzuki" id="suzuki" data-overlay="kia" data-tour="suzuki">
+					<img src="suzuki_pin.png">
+				</div>
+				<div class="pin VW" id="VW" data-overlay="vw" data-tour="volkswagen">
+					<img src="VW_pin.png">
+				</div>
+				<div class="pin VW_welt" id="VW_welt" data-overlay="skoda" data-tour="volkswagen">
+					<img src="VW_welt_pin.png">
+				</div>
+			</div>
+
+			<div class="close_iframe btn">
+				<span>X</span>
+			</div>
+		</div>
+
+	</body>
+
+	<script>
+
+		$(document).ready(function() {
+
+			pin_id = '';
+
+			$('.pin').hover(
+				function() {
+					pin_id = $(this).data('overlay');
+
+					if (pin_id == 'peugeot') {
+						$('.peugeot_overlay').addClass('visible');
+					} else {
+						$('.overlay.'+pin_id).addClass('visible');
+					}
+				},
+				function() {
+					if (pin_id == 'peugeot') {
+						$('.peugeot_overlay').removeClass('visible');
+					} else {
+						$('.overlay.'+pin_id).removeClass('visible');
+					}
+				}
+			);
+
+			$('.pin').on('click', function() {
+				pin_id = $(this).data('tour');
+				$('.full_overlay').show();
+				$('.loader').show();
+				$('<iframe>', {
+				   src: 'http://motorgomez360.com/tours/'+pin_id+'/index.html',
+				   id: pin_id+'tour',
+				   class: 'tour_iframe',
+				   frameborder: 0,
+				   width: '100%',
+				   height: '100%',
+				   scrolling: 'no'
+				   }).appendTo('.container');
+				$('.close_iframe').show();
+			});
+
+			$('.close_iframe').on('click', function() {
+				$('.loader').hide();
+				$('.full_overlay').hide();
+				$('.overlay.visible').removeClass('visible');
+				$('iframe').remove();
+				$(this).hide();
+			});
+
+		});
+	</script>
+</html>

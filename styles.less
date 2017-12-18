@@ -1,0 +1,296 @@
+
+body {
+	margin: 0;
+	overflow: hidden;
+}
+
+* {
+	font-family: arial;
+}
+
+.container {
+	position: relative;
+	width: 100%;
+	max-width: 2000px;
+	margin: 0 auto;
+	height: 100%;
+	overflow: hidden;
+
+	> img {
+		display: block;
+		max-width: 100%;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%) translateZ(0);
+	}
+
+	@media screen and (max-width: 560px) {
+		
+		> * {
+			display: none;
+		}
+	}
+}
+
+.overlay {
+	z-index: 4;
+	opacity: 0;
+	transition: all ease-in-out .2s;
+
+	&.visible {
+		opacity: 1;
+	}
+}
+
+.full_overlay {
+	z-index: 7;
+	position: relative;
+	display: none;
+	width: 100%;
+	height: 100%;
+	background: fade(#000, 70%);
+
+	&.visible {
+		display: block;
+	}
+}
+
+.mobile_overlay {
+	z-index: 20;
+	position: relative;
+	display: none;
+	width: 100%;
+	height: 100%;
+	background: fade(#000, 80%);
+	
+	.mobile_text {
+		width: 60%;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		text-align: center;
+		transform: translate(-50%, -50%) translateZ(0);
+	}
+
+	span {
+		color: #e8e8e8;
+		font-size: 14px;
+		display: block;
+		margin-bottom: 20px;
+	}
+
+	img {
+		display: inline-block;
+		max-width: 70px;		
+	}
+
+	@media screen and (max-width: 560px) {
+		display: block !important;
+	}
+}
+
+.peugeot_container {
+	z-index: 5;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	overflow: hidden;
+	border-top: 4px solid #fff;
+	border-left: 4px solid #fff;
+	width: 22%;
+	height: 32%;
+	border-top-left-radius: 3px;
+
+	img {
+		top: 50%;
+		left: 50%;
+		position: absolute;
+		display: block;
+		width: 100%;
+		height: 100%;
+		transform: translate(-50%, -50%) translateZ(0);
+
+		&.peugeot_overlay {
+			z-index: 2;
+			opacity: 0;
+			transition: all ease-in-out .2s;
+
+			&.visible {
+				opacity: 1;
+			}
+		}
+	}
+}
+
+.tour_iframe {
+	z-index: 10;
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%) translateZ(0);
+}
+
+.pin_container {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	z-index: 6;
+}
+
+.pin {
+	z-index: 1;
+	width: 5%;
+	height: 13.7%;
+	cursor: pointer;
+	position: absolute;
+
+	img {
+		max-width: 100%;
+	}
+}
+
+.pin#audi {
+	top: 32%;
+	left: 22%;
+}
+
+.pin#audi_selection {
+	top: 30%;
+	left: 30%;
+}
+
+.pin#opel {
+	top: 38%;
+	left: 13%;
+}
+
+.pin#peugeot {
+	bottom: 28%;
+	right: 8%;
+}
+
+.pin#VW {
+	top: 39%;
+	left: 50%;
+}
+
+.pin#kia {
+	top: 26%;
+	left: 57%;
+}
+
+.pin#suzuki {
+	top: 32%;
+	left: 64%;
+}
+
+.pin#skoda {
+	top: 21%;
+	left: 74%;
+}
+
+.pin#VW_welt {
+	top: 19%;
+	left: 67%;
+}
+
+.pin#seat {
+	top: 21%;
+	left: 80%;
+}
+
+.loader {
+	display: none;
+	z-index: 8;
+	width: 60px;
+	height: 60px;
+	border: 4px solid #677383;
+	border-top-color: #fff;
+	border-radius: 50%;
+	top: 50%;
+	left: 50%;
+	position: absolute;
+	animation-name: loading;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+	margin: -30px 0 0 -30px;
+}
+	
+@keyframes loading {
+    100% {
+		transform: rotate(1turn);
+	}
+}
+
+.close_iframe {
+	z-index: 10;
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.btn {
+	cursor: pointer;
+	display: none;
+	color: #fff;
+	background: #677383;
+	line-height: 32px;
+	padding: 0 20px;
+	font-size: 18px;
+	border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
+
+	&:hover {
+		background: #585f6b;
+	}
+}
+
+// Old Styles
+
+.logo {
+	width: 250px;
+	display: inline-block;
+
+	img {
+		width: 100%;
+		display: block;
+	}
+
+}
+
+.strapline {
+	margin-top: 90px;
+	font-family: arial;
+	text-transform: uppercase;
+	float: right;
+
+	h1 {
+		font-size: 20px;
+		margin: 0;
+		font-weight: normal;
+	}
+}
+
+.map-holder {
+	overflow: hidden;
+	height: 500px;
+	width: 100%;
+	position: relative;
+	border: 1px solid grey;
+
+	img {
+		position: relative;
+		cursor: move;
+	}
+}
+
+
+@media (max-width: 560px) {
+
+	.mobile_overlay {
+		display: block;
+	}
+}
